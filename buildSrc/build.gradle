@@ -1,7 +1,9 @@
+// kotlin方式编写插件
 // 使用 plugins 块语法应用插件
 plugins {
     // 应用 kotlin 插件
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+    id 'maven'
 }
 repositories {
     google()
@@ -18,8 +20,26 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-//use java library
+//上传插件
+def group='com.liuhc.plugin' //组
+def version='1.0.0' //版本
+def artifactId='plugin' //唯一标识
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址设置
+            pom.groupId = group
+            pom.artifactId = artifactId
+            pom.version = version
+            repository(url: uri('../info_plugin_repo'))
+        }
+    }
+}
+
+// java方式编写插件
 //apply plugin: 'java-library'
+//apply plugin: 'maven'
 //
 //sourceSets {
 //    main{

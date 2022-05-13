@@ -10,6 +10,6 @@ import org.gradle.api.Project
  */
 internal class InfoPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        println("abcd")
+        println("target=$target")
     }
 }

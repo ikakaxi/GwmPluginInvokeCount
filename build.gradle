@@ -1,0 +1,23 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlinVersion = '1.6.20'
+    ext.gradleVersion = '4.1.1'
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+//        maven {
+//            //指定本地maven的路径，在项目根目录下
+//            url uri('./info_plugin_repo')
+//        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+//        classpath 'com.liuhc.plugin:plugin:1.0.0'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

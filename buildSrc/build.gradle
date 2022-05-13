@@ -1,0 +1,29 @@
+//use java library
+apply plugin: 'java-library'
+//apply plugin: 'kotlin'
+
+sourceSets {
+    main{
+        java{
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+dependencies{
+    // gradle sdk
+    implementation gradleApi()
+    // groovy sdk
+    implementation localGroovy()
+}
+
+repositories{
+    google()
+    mavenCentral()
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

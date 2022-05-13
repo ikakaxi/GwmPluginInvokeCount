@@ -1,1 +1,1 @@
-/Users/liuhc/Documents/WorkSpace/ikakaxi/TestPlugin/buildSrc/build/classes/kotlin/main/com/liuhc/info/InfoPlugin.class
+/Users/liuhc/Documents/WorkSpace/ikakaxi/TestPlugin/buildSrc/build/classes/kotlin/main/com/liuhc/plugin/InfoPlugin.class

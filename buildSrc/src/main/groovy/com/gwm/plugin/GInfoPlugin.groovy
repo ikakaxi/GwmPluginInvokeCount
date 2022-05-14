@@ -1,7 +1,7 @@
-package com.liuhc.plugin
+package com.gwm.plugin
 
 import com.android.build.gradle.AppExtension
-import com.liuhc.plugin.invoke.InvokeCountTransform
+import com.gwm.plugin.invoke.InvokeCountTransform
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

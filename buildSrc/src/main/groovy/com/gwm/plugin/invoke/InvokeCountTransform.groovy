@@ -1,10 +1,10 @@
-package com.liuhc.plugin.invoke
+package com.gwm.plugin.invoke
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.ide.common.internal.WaitableExecutor
-import com.liuhc.plugin.ClassNameAnalytics
-import com.liuhc.plugin.TransformHelper
+import com.gwm.plugin.ClassNameAnalytics
+import com.gwm.plugin.TransformHelper
 import groovy.io.FileType
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils

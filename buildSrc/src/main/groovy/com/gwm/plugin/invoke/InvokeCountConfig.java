@@ -1,4 +1,4 @@
-package com.liuhc.plugin.invoke;
+package com.gwm.plugin.invoke;
 
 import java.util.ArrayList;
 import java.util.HashMap;

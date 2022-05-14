@@ -1,4 +1,4 @@
-package com.liuhc.plugin.invoke;
+package com.gwm.plugin.invoke;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

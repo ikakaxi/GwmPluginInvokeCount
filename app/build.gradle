@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.liuhc.plugin'
+apply plugin: 'com.gwm.plugin'
 
 InvokeCountConfig {
     // 统计列表，规则：类名全路径#方法名

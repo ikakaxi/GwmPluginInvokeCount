@@ -1,6 +1,7 @@
 package com.liuhc.testplugin
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -8,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val demo = InvokeDemo()
-        repeat(5) {
+        findViewById<Button>(R.id.btn).setOnClickListener {
             demo.demoMethod()
         }
     }

@@ -9,13 +9,15 @@ import java.util.Set;
 public class InvokeCountConfig {
 
 	public Set<String> invokeList;
+	private boolean inited = false;
 
 	private final Map<String, List<String>> classToMethodsMap = new HashMap<>();
 
 	void init() {
-		if (invokeList == null) {
+		if (inited) {
 			return;
 		}
+		inited = true;
 		for (String s : invokeList) {
 			String[] split = s.split("#");
 			String key = split[0];

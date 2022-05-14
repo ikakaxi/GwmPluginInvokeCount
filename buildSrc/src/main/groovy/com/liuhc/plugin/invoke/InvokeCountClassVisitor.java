@@ -22,6 +22,7 @@ public class InvokeCountClassVisitor extends ClassVisitor {
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
 		MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
+		config.init();
 		if (config.containMethod(className, name)) {
 			return new InvokeCountMethodVisitor(methodVisitor, access, name, desc);
 		}

@@ -21,30 +21,18 @@ class TransformHelper {
     HashSet<String> ignoreClass = new HashSet<>(['keyboard'])
     HashSet<String> exclude = new HashSet<>(['android.support',
                                              'androidx',
-                                             'com.qiyukf',
                                              'android.arch',
                                              'com.google.android',
-                                             "com.tencent.smtt",
-                                             "com.umeng.message",
-                                             "com.xiaomi.push",
-                                             "com.huawei.hms",
-                                             "cn.jpush.android",
-                                             "cn.jiguang",
-                                             "com.meizu.cloud.pushsdk",
-                                             "com.vivo.push",
-                                             "com.igexin",
-                                             "com.getui",
-                                             "com.xiaomi.mipush.sdk",
-                                             "com.heytap.msp.push",
-                                             'com.bumptech.glide',
-                                             'com.tencent.tinker'])
+                                             "org.intellij",
+                                             "kotlin.",
+                                             "META-INF."])
     HashSet<String> include = new HashSet<>([])
     /** 将一些特例需要排除在外 */
     public static final HashSet<String> special = []
 
     ClassNameAnalytics analytics(String className) {
         ClassNameAnalytics classNameAnalytics = new ClassNameAnalytics(className)
-        if (!classNameAnalytics.isAndroidGenerated() && !classNameAnalytics.isKotlin() && !classNameAnalytics.isMETA_INF()) {
+        if (!classNameAnalytics.isAndroidGenerated()) {
             for (pkgName in special) {
                 if (className.startsWith(pkgName)) {
                     classNameAnalytics.isShouldModify = true

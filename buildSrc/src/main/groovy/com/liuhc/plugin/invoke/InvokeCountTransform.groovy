@@ -32,7 +32,6 @@ public class InvokeCountTransform extends Transform {
         transformHelper = new TransformHelper()
         //添加自定义扩展
         config = project.extensions.create("InvokeCountConfig", InvokeCountConfig)
-        config.init()
     }
 
     @Override

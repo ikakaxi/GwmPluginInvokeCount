@@ -36,12 +36,4 @@ class ClassNameAnalytics {
                 className.contains('R2.class') ||
                 className.contains('BuildConfig.class')
     }
-
-    boolean isKotlin() {
-        return className.startsWith("kotlin.")
-    }
-
-    boolean isMETA_INF() {
-        return className.startsWith("META-INF.")
-    }
 }

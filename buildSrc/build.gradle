@@ -22,9 +22,9 @@ dependencies {
     implementation gradleApi()
     implementation 'com.android.tools.build:gradle:4.1.0'
     // kotlin方式：在插件源码中添加 kotlin 标准库依赖
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+//    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
     // java方式和groovy方式
-//    implementation localGroovy()
+    implementation localGroovy()
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

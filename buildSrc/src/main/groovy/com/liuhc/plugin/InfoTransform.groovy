@@ -1,18 +1,15 @@
 package com.liuhc.plugin
 
-import com.android.build.api.transform.Format
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Transform
-import com.android.build.api.transform.TransformException
-import com.android.build.api.transform.TransformInvocation
+import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.utils.FileUtils
 import org.apache.commons.codec.digest.DigestUtils
 import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
 
-public class InfoTransform extends Transform{
+public class InfoTransform extends Transform {
     @Override
     String getName() {
         //task名字
@@ -64,6 +61,27 @@ public class InfoTransform extends Transform{
                 FileUtils.copyFile(jarInput.file, dest)
             }
         }
+    }
+
+    /**
+     * 真正修改类中方法字节码
+     */
+    private byte[] modifyClass(byte[] srcClass, String className) {
+//        try {
+//            ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS)
+//            ClassVisitor classVisitor = new ClassVisitor(classWriter, classNameAnalytics, transformHelper, sdkVersionHelper)
+//            ClassReader cr = new ClassReader(srcClass)
+//            cr.accept(classVisitor, ClassReader.EXPAND_FRAMES)
+//            return classWriter.toByteArray()
+//        } catch (Exception ex) {
+//            Logger.error("$classNameAnalytics.className 类执行 modifyClass 方法出现异常")
+//            ex.printStackTrace()
+//            if (transformHelper.extension.debug) {
+//                throw new Error()
+//            }
+//            return srcClass
+//        }
+        return srcClass
     }
 
     private static void handleFile(File file) {

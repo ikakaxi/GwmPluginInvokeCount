@@ -12,7 +12,7 @@ public class InvokeCountConfig {
 
 	private final Map<String, List<String>> classToMethodsMap = new HashMap<>();
 
-	public void init() {
+	void init() {
 		if (invokeList == null) {
 			return;
 		}

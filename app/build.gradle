@@ -5,7 +5,7 @@ apply plugin: 'com.liuhc.plugin'
 InvokeCountConfig {
     // 统计列表，规则：类名全路径#方法名
     invokeList = [
-            "com.amap.api.location.AMapLocationClient#startLocation"
+            "com.liuhc.testplugin#demoMethod"
     ]
 }
 
@@ -43,7 +43,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'com.amap.api:location:latest.integration'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

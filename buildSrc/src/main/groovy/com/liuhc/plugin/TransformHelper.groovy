@@ -24,8 +24,9 @@ class TransformHelper {
                                              'android.arch',
                                              'com.google.android',
                                              "org.intellij",
-                                             "kotlin.",
-                                             "META-INF."])
+                                             "kotlin",
+                                             "META-INF",
+                                             "org.jetbrains"])
     HashSet<String> include = new HashSet<>([])
     /** 将一些特例需要排除在外 */
     public static final HashSet<String> special = []

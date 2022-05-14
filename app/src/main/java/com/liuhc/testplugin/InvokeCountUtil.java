@@ -15,34 +15,41 @@ class InvokeCountUtil {
 	public static Map<String, InvokeCountData> map = new HashMap<>();
 
 	public static void count() {
-		String currentMethodName = getCurrentMethodName(Thread.currentThread().getStackTrace());
+		String invokeMethodName = getInvokeMethodName(Thread.currentThread().getStackTrace());
 		InvokeCountData invokeCountData;
-		if (!map.containsKey(currentMethodName)) {
-			invokeCountData = new InvokeCountData();
-			map.put(currentMethodName, invokeCountData);
+		if (!map.containsKey(invokeMethodName)) {
+			invokeCountData = new InvokeCountData(invokeMethodName);
+			map.put(invokeMethodName, invokeCountData);
 		} else {
-			invokeCountData = map.get(currentMethodName);
+			invokeCountData = map.get(invokeMethodName);
 			invokeCountData
 					.addCount()
-					.updateTime();
+					.updateDuration();
 		}
 		log(invokeCountData.toString());
 	}
 
-	private static void log(String message){
+	private static void log(String message) {
 		Log.e("InvokeCountUtil", message);
 	}
 
-	private static String getCurrentMethodName(StackTraceElement[] elements) {
-		return elements[3].getClassName() + "." + elements[3].getMethodName();
+	private static final int index = 4;
+	private static String getInvokeMethodName(StackTraceElement[] elements) {
+		return elements[index].getClassName() + "." + elements[index].getMethodName();
 	}
+
 	public static class InvokeCountData {
+		//System.nanoTime()获取的是纳秒，1000纳秒是1微秒，1000微秒是1毫秒，1000毫秒是1秒
+		private static final long SECODE = 1000 * 1000 * 1000;
 		private int count;
 		private long time;
+		private long duration;
+		private String invokeMethodName;
 
-		InvokeCountData() {
+		InvokeCountData(String invokeMethodName) {
 			this.count = 1;
-			this.time = 0;
+			this.time = System.nanoTime();
+			this.invokeMethodName = invokeMethodName;
 		}
 
 		public InvokeCountData addCount() {
@@ -50,17 +57,18 @@ class InvokeCountUtil {
 			return this;
 		}
 
-		public InvokeCountData updateTime() {
-			this.time = System.nanoTime() - this.time;
+		public InvokeCountData updateDuration() {
+			this.duration = System.nanoTime() - this.time;
 			return this;
 		}
 
 		@Override
 		public String toString() {
-			return "test.InvokeCountData{" +
-					"count=" + count +
-					", time=" + time +
-					'}';
+			return "InvokeCountData{" +
+					"调用方=" + invokeMethodName +
+					"调用次数=" + count +
+					", 持续时间=" + (duration / SECODE) +
+					"秒}";
 		}
 	}
 }

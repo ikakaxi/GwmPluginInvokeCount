@@ -27,20 +27,10 @@ class TransformHelper {
                                              "kotlin",
                                              "META-INF",
                                              "org.jetbrains"])
-    HashSet<String> include = new HashSet<>([])
-    /** 将一些特例需要排除在外 */
-    public static final HashSet<String> special = []
 
     ClassNameAnalytics analytics(String className) {
         ClassNameAnalytics classNameAnalytics = new ClassNameAnalytics(className)
         if (!classNameAnalytics.isAndroidGenerated()) {
-            for (pkgName in special) {
-                if (className.startsWith(pkgName)) {
-                    classNameAnalytics.isShouldModify = true
-                    return classNameAnalytics
-                }
-            }
-
             classNameAnalytics.isShouldModify = true
             if (!classNameAnalytics.isLeanback()) {
                 for (pkgName in exclude) {

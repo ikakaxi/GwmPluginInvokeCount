@@ -16,7 +16,6 @@
  */
 package com.liuhc.plugin
 
-
 class ClassNameAnalytics {
     public String className
     boolean isShouldModify = false

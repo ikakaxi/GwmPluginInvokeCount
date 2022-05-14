@@ -1,15 +1,25 @@
-package com.liuhc.plugin
+package com.liuhc.plugin.invoke
 
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.utils.FileUtils
 import org.apache.commons.codec.digest.DigestUtils
+import org.gradle.api.Project
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
 
-public class InfoTransform extends Transform {
+public class InvokeCountTransform extends Transform {
+
+    private InvokeCountConfig config
+
+    InvokeCountTransform(Project project) {
+        //添加自定义扩展
+        config = project.extensions.create("InvokeCountConfig", InvokeCountConfig)
+        config.init()
+    }
+
     @Override
     String getName() {
         //task名字
@@ -18,7 +28,7 @@ public class InfoTransform extends Transform {
 
     @Override
     Set<QualifiedContent.ContentType> getInputTypes() {
-        return TransformManager.CONTENT_JARS
+        return TransformManager.CONTENT_CLASS
     }
 
     @Override
@@ -39,11 +49,10 @@ public class InfoTransform extends Transform {
                 if (it.file.isDirectory()) {
                     it.file.eachFileRecurse {
                         def fileName = it.name
-                        println("-------------" + fileName + "---------------")
                         if (fileName.endsWith(".class") && !fileName.startsWith("R\$")
                                 && fileName != "BuildConfig.class" && fileName != "R.class") {
                             //各种过滤类，关联classVisitor
-                            handleFile(it)
+                            modifyClass(it.bytes, it.name.replace(".class", ""))
                         }
                     }
                 }
@@ -70,25 +79,12 @@ public class InfoTransform extends Transform {
         try {
             ClassReader cr = new ClassReader(srcClass)
             ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS)
-            ClassVisitor classVisitor = new MethodInvokeCount(Opcodes.ASM5, cw, className)
+            ClassVisitor classVisitor = new InvokeCountClassVisitor(Opcodes.ASM5, cw, config, className)
             cr.accept(classVisitor, ClassReader.EXPAND_FRAMES)
             return cw.toByteArray()
         } catch (Exception e) {
             e.printStackTrace()
             return srcClass
         }
-        return srcClass
-    }
-
-    private static void handleFile(File file) {
-//        def cr = new ClassReader(file.bytes)
-//        def cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS)
-//        def classVisitor = new MethodInvokeCount(Opcodes.ASM5, cw)
-//        cr.accept(classVisitor, ClassReader.EXPAND_FRAMES)
-//        def bytes = cw.toByteArray()
-//        //写回原来这个类所在的路径
-//        FileOutputStream fos = new FileOutputStream(file.getParentFile().getAbsolutePath() + File.separator + file.name)
-//        fos.write(bytes)
-//        fos.close()
     }
 }

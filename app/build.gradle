@@ -1,6 +1,13 @@
-apply plugin:'com.android.application'
-apply plugin:'kotlin-android'
-apply plugin:'com.liuhc.plugin'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.liuhc.plugin'
+
+InvokeCountConfig {
+    // 统计列表，规则：类名全路径#方法名
+    invokeList = [
+            "com.amap.api.location.AMapLocationClient#startLocation"
+    ]
+}
 
 android {
     compileSdkVersion 31

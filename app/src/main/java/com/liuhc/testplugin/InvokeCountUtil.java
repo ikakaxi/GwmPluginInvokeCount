@@ -1,5 +1,7 @@
 package com.liuhc.testplugin;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ class InvokeCountUtil {
 	}
 
 	private static void log(String message){
-//		Log.e("test.InvokeCountUtil", message);
+		Log.e("test.InvokeCountUtil", message);
 	}
 
 	private static String getCurrentMethodName(StackTraceElement[] elements) {

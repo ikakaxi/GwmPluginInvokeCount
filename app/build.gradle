@@ -5,7 +5,7 @@ apply plugin: 'com.liuhc.plugin'
 InvokeCountConfig {
     // 统计列表，规则：类名全路径#方法名
     invokeList = [
-            "com.liuhc.testplugin#demoMethod"
+            "com.liuhc.testplugin.InvokeDemo#demoMethod"
     ]
 }
 

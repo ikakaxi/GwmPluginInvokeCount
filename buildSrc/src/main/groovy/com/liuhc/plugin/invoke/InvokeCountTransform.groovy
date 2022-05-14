@@ -314,7 +314,9 @@ public class InvokeCountTransform extends Transform {
     }
 
 //-------------------------------------------------------------------------------------------------
-//    公用方法
+    /**
+     * 公用方法
+     */
     private static byte[] toByteArrayAndAutoCloseStream(InputStream input) throws Exception {
         ByteArrayOutputStream output = null
         try {

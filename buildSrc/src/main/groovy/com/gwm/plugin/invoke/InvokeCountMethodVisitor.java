@@ -1,5 +1,6 @@
 package com.gwm.plugin.invoke;
 
+import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.AdviceAdapter;
@@ -11,16 +12,22 @@ import org.objectweb.asm.commons.AdviceAdapter;
  */
 class InvokeCountMethodVisitor extends AdviceAdapter {
 
+	private final String className;
+
 	/**
 	 * Constructs a new {@link AdviceAdapter}.
 	 */
-	protected InvokeCountMethodVisitor(MethodVisitor methodVisitor, int access, String name, String descriptor) {
+	protected InvokeCountMethodVisitor(MethodVisitor methodVisitor, int access, String className, String name, String descriptor) {
 		super(Opcodes.ASM6, methodVisitor, access, name, descriptor);
+		this.className = className;
 	}
 
 	@Override
 	protected void onMethodEnter() {
-		mv.visitMethodInsn(INVOKESTATIC, "com/liuhc/testplugin/InvokeCountUtil", "count", "()V", false);
+		Label classNameLabel = new Label();
+		mv.visitLabel(classNameLabel);
+		mv.visitLdcInsn(className);
+		mv.visitMethodInsn(INVOKESTATIC, "com/liuhc/testplugin/InvokeCountUtil", "count", "(Ljava/lang/String;)V", false);
 	}
 
 	@Override

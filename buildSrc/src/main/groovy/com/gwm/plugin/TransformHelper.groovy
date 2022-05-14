@@ -22,7 +22,7 @@ class TransformHelper {
     HashSet<String> exclude = new HashSet<>(['android.support',
                                              'androidx',
                                              'android.arch',
-                                             'com.google.android',
+                                             "com.google",
                                              "org.intellij",
                                              "kotlin",
                                              "META-INF",

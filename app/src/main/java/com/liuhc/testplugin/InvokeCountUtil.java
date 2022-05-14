@@ -16,12 +16,12 @@ class InvokeCountUtil {
 
 	public static Map<String, InvokeCountData> map = new HashMap<>();
 
-	public static void count() {
+	public static void count(String beInvokedClassName) {
 		StackTraceElement targetElement = getInvokeStackTraceElement();
 		String invokeMethodName = getInvokeMethodName(targetElement);
 		InvokeCountData invokeCountData;
 		if (!map.containsKey(invokeMethodName)) {
-			invokeCountData = new InvokeCountData(getBeInvokeMethodName());
+			invokeCountData = new InvokeCountData(beInvokedClassName, getbeInvokedMethodName());
 			map.put(invokeMethodName, invokeCountData);
 		} else {
 			invokeCountData = map.get(invokeMethodName);
@@ -33,7 +33,7 @@ class InvokeCountUtil {
 	}
 
 	private static void log(StackTraceElement targetElement, String message) {
-		Log.e("InvokeCountUtil", getClickableHeader(targetElement) + message);
+		Log.e("InvokeCountUtil", "调用方=" + getClickableHeader(targetElement) + message);
 	}
 
 	private static String getClickableHeader(StackTraceElement targetElement) {
@@ -41,7 +41,7 @@ class InvokeCountUtil {
 	}
 
 	//被调用方索引
-	private static final int beInvokeIndex = 4;
+	private static final int beInvokedIndex = 4;
 	//调用方索引
 	private static final int invokeIndex = 5;
 
@@ -50,9 +50,9 @@ class InvokeCountUtil {
 		return elements[invokeIndex];
 	}
 
-	private static String getBeInvokeMethodName() {
+	private static String getbeInvokedMethodName() {
 		StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-		StackTraceElement element = elements[beInvokeIndex];
+		StackTraceElement element = elements[beInvokedIndex];
 		return element.getMethodName();
 	}
 
@@ -66,12 +66,14 @@ class InvokeCountUtil {
 		private int count;
 		private final long time;
 		private long duration;
-		private String beInvokeMethodName;
+		private String beInvokedClassName;
+		private String beInvokedMethodName;
 
-		InvokeCountData(String beInvokeMethodName) {
+		InvokeCountData(String beInvokedClassName, String beInvokedMethodName) {
 			this.count = 1;
 			this.time = System.nanoTime();
-			this.beInvokeMethodName = beInvokeMethodName;
+			this.beInvokedClassName = beInvokedClassName;
+			this.beInvokedMethodName = beInvokedMethodName;
 		}
 
 		public void addCount() {
@@ -85,7 +87,7 @@ class InvokeCountUtil {
 		@NonNull
 		@Override
 		public String toString() {
-			return " 被调用的方法=" + beInvokeMethodName + " ,调用次数=" + count + " ,持续时间=" + (duration / SECODE) + "秒";
+			return " 被调用方=" + beInvokedClassName + "." + beInvokedMethodName + " 调用次数=" + count + " 持续时间=" + (duration / SECODE) + "秒";
 		}
 	}
 }

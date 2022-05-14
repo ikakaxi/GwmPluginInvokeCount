@@ -1,7 +1,5 @@
 package com.liuhc.testplugin;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,10 +24,41 @@ class InvokeCountUtil {
 					.addCount()
 					.updateTime();
 		}
-		LogUtil.log(invokeCountData.toString());
+		log(invokeCountData.toString());
+	}
+
+	private static void log(String message){
+//		Log.e("test.InvokeCountUtil", message);
 	}
 
 	private static String getCurrentMethodName(StackTraceElement[] elements) {
 		return elements[3].getClassName() + "." + elements[3].getMethodName();
+	}
+	public static class InvokeCountData {
+		private int count;
+		private long time;
+
+		InvokeCountData() {
+			this.count = 1;
+			this.time = 0;
+		}
+
+		public InvokeCountData addCount() {
+			count++;
+			return this;
+		}
+
+		public InvokeCountData updateTime() {
+			this.time = System.nanoTime() - this.time;
+			return this;
+		}
+
+		@Override
+		public String toString() {
+			return "test.InvokeCountData{" +
+					"count=" + count +
+					", time=" + time +
+					'}';
+		}
 	}
 }

@@ -15,7 +15,7 @@ class InvokeCountMethodVisitor extends AdviceAdapter {
 	 * Constructs a new {@link AdviceAdapter}.
 	 */
 	protected InvokeCountMethodVisitor(MethodVisitor methodVisitor, int access, String name, String descriptor) {
-		super(Opcodes.ASM5, methodVisitor, access, name, descriptor);
+		super(Opcodes.ASM6, methodVisitor, access, name, descriptor);
 	}
 
 	@Override

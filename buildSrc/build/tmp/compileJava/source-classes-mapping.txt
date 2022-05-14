@@ -1,2 +1,0 @@
-com/liuhc/plugin/TimeTotal.java
- com.liuhc.plugin.TimeTotal

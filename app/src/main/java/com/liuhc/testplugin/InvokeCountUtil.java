@@ -21,7 +21,7 @@ class InvokeCountUtil {
 		String invokeMethodName = getInvokeMethodName(targetElement);
 		InvokeCountData invokeCountData;
 		if (!map.containsKey(invokeMethodName)) {
-			invokeCountData = new InvokeCountData();
+			invokeCountData = new InvokeCountData(getBeInvokeMethodName());
 			map.put(invokeMethodName, invokeCountData);
 		} else {
 			invokeCountData = map.get(invokeMethodName);
@@ -40,11 +40,20 @@ class InvokeCountUtil {
 		return "(" + targetElement.getFileName() + ":" + targetElement.getLineNumber() + ")";
 	}
 
-	private static final int index = 5;
+	//被调用方索引
+	private static final int beInvokeIndex = 4;
+	//调用方索引
+	private static final int invokeIndex = 5;
 
 	private static StackTraceElement getInvokeStackTraceElement() {
 		StackTraceElement[] elements = Thread.currentThread().getStackTrace();
-		return elements[index];
+		return elements[invokeIndex];
+	}
+
+	private static String getBeInvokeMethodName() {
+		StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+		StackTraceElement element = elements[beInvokeIndex];
+		return element.getMethodName();
 	}
 
 	private static String getInvokeMethodName(StackTraceElement elements) {
@@ -57,10 +66,12 @@ class InvokeCountUtil {
 		private int count;
 		private final long time;
 		private long duration;
+		private String beInvokeMethodName;
 
-		InvokeCountData() {
+		InvokeCountData(String beInvokeMethodName) {
 			this.count = 1;
 			this.time = System.nanoTime();
+			this.beInvokeMethodName = beInvokeMethodName;
 		}
 
 		public void addCount() {
@@ -74,7 +85,7 @@ class InvokeCountUtil {
 		@NonNull
 		@Override
 		public String toString() {
-			return "调用次数=" + count + " ,持续时间=" + (duration / SECODE) + "秒";
+			return " 被调用的方法=" + beInvokeMethodName + " ,调用次数=" + count + " ,持续时间=" + (duration / SECODE) + "秒";
 		}
 	}
 }

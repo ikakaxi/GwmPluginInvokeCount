@@ -30,7 +30,7 @@ class InvokeCountUtil {
 	}
 
 	private static void log(String message){
-		Log.e("test.InvokeCountUtil", message);
+		Log.e("InvokeCountUtil", message);
 	}
 
 	private static String getCurrentMethodName(StackTraceElement[] elements) {

@@ -44,7 +44,7 @@ class TransformHelper {
 
     ClassNameAnalytics analytics(String className) {
         ClassNameAnalytics classNameAnalytics = new ClassNameAnalytics(className)
-        if (!classNameAnalytics.isAndroidGenerated()) {
+        if (!classNameAnalytics.isAndroidGenerated() && !classNameAnalytics.isKotlin() && !classNameAnalytics.isMETA_INF()) {
             for (pkgName in special) {
                 if (className.startsWith(pkgName)) {
                     classNameAnalytics.isShouldModify = true

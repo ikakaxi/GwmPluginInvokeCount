@@ -5,14 +5,15 @@ import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
 
 /**
- * Created by zjy on 2019-05-03
+ * @author liuhc
+ * @date 2022-5-14
+ * 统计某方法调用次数
  */
-public class MethodTotal extends ClassVisitor {
-	public MethodTotal(int i, ClassVisitor classVisitor) {
+public class MethodInvokeCount extends ClassVisitor {
+	public MethodInvokeCount(int i, ClassVisitor classVisitor,String className) {
 		super(i, classVisitor);
 	}
 

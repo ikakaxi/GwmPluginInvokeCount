@@ -1,2 +1,2 @@
-com/liuhc/plugin/InfoPlugin.java
- com.liuhc.plugin.InfoPlugin
+com/liuhc/plugin/TimeTotal.java
+ com.liuhc.plugin.TimeTotal

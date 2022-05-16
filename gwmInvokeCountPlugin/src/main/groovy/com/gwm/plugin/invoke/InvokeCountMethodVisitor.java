@@ -29,6 +29,8 @@ class InvokeCountMethodVisitor extends AdviceAdapter {
 		Label classNameLabel = new Label();
 		mv.visitLabel(classNameLabel);
 		mv.visitLdcInsn(className);
+		System.err.println("config.invokeClass="+config.invokeClass);
+		System.err.println("config.invokeMethod="+config.invokeMethod);
 		mv.visitMethodInsn(INVOKESTATIC, config.invokeClass, config.invokeMethod, "(Ljava/lang/String;)V", false);
 	}
 

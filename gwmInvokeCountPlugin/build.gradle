@@ -6,8 +6,6 @@
 //apply plugin: 'java-library'
 //groovy方式编写插件
 apply plugin: 'groovy'
-//JitPack插件
-apply plugin: 'maven-publish'
 
 repositories {
     google()
@@ -27,7 +25,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
-
 //上传插件
 //group = 'com.github.ikakaxi'
 //组
@@ -37,6 +34,23 @@ java {
 //artifactId = 'invokeCount'
 //version = '0.0.1' //版本
 
+//上传到本地
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址设置
+            pom.groupId = 'com.gwm.plugin'
+            pom.artifactId = 'invokeCount'
+            pom.version = '0.0.1'
+            repository(url: uri('../info_plugin_repo'))
+        }
+    }
+}
+
+//JitPack插件
+apply plugin: 'maven-publish'
+//JitPack
 afterEvaluate {
     publishing {
         publications {

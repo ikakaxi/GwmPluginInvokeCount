@@ -12,7 +12,9 @@ apply plugin: 'groovy'
 //apply plugin: 'maven'
 //上面3种方式的maven可以去掉
 //JitPack插件
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
+apply plugin: 'com.github.dcendents:android-maven'
+group='com.github.ikakaxi'
 
 repositories {
     google()
@@ -49,12 +51,12 @@ def ver = '0.0.1' //版本
 //        }
 //    }
 //}
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // Creates a Maven publication called "release".
+//            release(MavenPublication) {
+//            }
+//        }
+//    }
+//}

@@ -2,7 +2,7 @@
 buildscript {
     ext.kotlinVersion = '1.6.10'
     ext.gradleVersion = '4.1.1'
-    def usePluginByLocal = true
+    def usePluginByLocal = false
     repositories {
         google()
         mavenCentral()

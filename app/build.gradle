@@ -7,8 +7,7 @@ apply plugin: 'kotlin-android'
 //    invokeList = [
 //            "com.gwm.testplugin.InvokeDemo#demoMethod"
 //    ]
-//    //invokeClass包名之间使用/分割
-//    invokeClass= "com/gwm/testplugin/InvokeCountUtil"
+//    invokeClass= "com.gwm.testplugin.InvokeCountUtil"
 //    invokeMethod= "count"
 //}
 

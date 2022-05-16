@@ -37,19 +37,16 @@ java {
 }
 
 //上传插件
-def group = 'com.gwm.plugin' //组
-def artifact = 'incokeCount' //唯一标识
-def ver = '0.0.1' //版本
+group = 'com.gwm.plugin' //组
+version = '0.0.1' //版本
+//def artifact = 'incokeCount' //唯一标识
 
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-//                from components.release
-                groupId = group
-                artifactId = artifact
-                version = ver
+            maven(MavenPublication) {
+                artifactId = 'incokeCount'
+                from components.java
             }
         }
     }

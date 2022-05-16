@@ -1,3 +1,4 @@
+apply from: '../publish.gradle'
 // kotlin方式编写插件
 //plugins {
 //    // 应用 kotlin 插件
@@ -9,10 +10,10 @@
 //apply plugin: 'maven'
 // groovy方式编写插件
 apply plugin: 'groovy'
-//apply plugin: 'maven'
+apply plugin: 'maven'
 //上面3种方式的maven可以去掉
 //JitPack插件
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 
 repositories {
     google()
@@ -49,11 +50,11 @@ def artifactId = 'incokeCount' //唯一标识
 //        }
 //    }
 //}
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//            }
+//        }
+//    }
+//}

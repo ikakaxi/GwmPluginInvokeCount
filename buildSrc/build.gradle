@@ -12,7 +12,7 @@ apply plugin: 'groovy'
 //apply plugin: 'maven'
 //上面3种方式的maven可以去掉
 //JitPack插件
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 repositories {
     google()
@@ -35,17 +35,30 @@ java {
 
 //上传插件
 def group = 'com.gwm.plugin' //组
-def version = '0.0.1' //版本
-def artifactId = 'incokeCount' //唯一标识
+def artifact = 'incokeCount' //唯一标识
+def ver = '0.0.1' //版本
 
 //uploadArchives {
 //    repositories {
 //        mavenDeployer {
 //            //本地的Maven地址设置
 //            pom.groupId = group
-//            pom.artifactId = artifactId
-//            pom.version = version
+//            pom.artifactId = artifact
+//            pom.version = ver
 //            repository(url: uri('../info_plugin_repo'))
 //        }
 //    }
 //}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = group
+                artifactId = artifact
+                version = ver
+            }
+        }
+    }
+}

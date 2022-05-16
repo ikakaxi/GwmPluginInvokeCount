@@ -11,3 +11,4 @@ local.properties
 /app/build
 /buildSrc/build
 /buildSrc/.gradle
+gwmInvokeCountPlugin/build

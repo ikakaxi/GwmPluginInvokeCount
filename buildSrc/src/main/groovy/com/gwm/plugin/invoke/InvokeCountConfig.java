@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class InvokeCountConfig {
 
+	public String invokeClass;
+	public String invokeMethod;
 	public Set<String> invokeList;
 	private boolean inited = false;
 

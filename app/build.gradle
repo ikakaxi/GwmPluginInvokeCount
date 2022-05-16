@@ -5,8 +5,11 @@ apply plugin: 'com.gwm.plugin'
 InvokeCountConfig {
     // 统计列表，规则：类名全路径#方法名
     invokeList = [
-            "com.liuhc.testplugin.InvokeDemo#demoMethod"
+            "com.gwm.testplugin.InvokeDemo#demoMethod"
     ]
+    //invokeClass包名之间使用/分割
+    invokeClass= "com/gwm/testplugin/InvokeCountUtil"
+    invokeMethod= "count"
 }
 
 android {
@@ -14,7 +17,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.liuhc.testplugin"
+        applicationId "com.gwm.testplugin"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1

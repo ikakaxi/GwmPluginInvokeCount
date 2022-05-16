@@ -24,7 +24,7 @@ public class InvokeCountClassVisitor extends ClassVisitor {
 		MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
 		config.init();
 		if (config.containMethod(className, name)) {
-			return new InvokeCountMethodVisitor(methodVisitor, access, className, name, desc);
+			return new InvokeCountMethodVisitor(methodVisitor, config, access, className, name, desc);
 		}
 		return methodVisitor;
 	}

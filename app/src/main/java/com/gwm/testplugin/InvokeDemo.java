@@ -1,4 +1,4 @@
-package com.liuhc.testplugin;
+package com.gwm.testplugin;
 
 import android.util.Log;
 

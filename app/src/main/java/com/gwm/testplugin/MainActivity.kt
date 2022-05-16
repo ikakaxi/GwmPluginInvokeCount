@@ -1,4 +1,4 @@
-package com.liuhc.testplugin
+package com.gwm.testplugin
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

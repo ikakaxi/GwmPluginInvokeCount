@@ -12,13 +12,15 @@ import org.objectweb.asm.commons.AdviceAdapter;
  */
 class InvokeCountMethodVisitor extends AdviceAdapter {
 
+	private final InvokeCountConfig config;
 	private final String className;
 
 	/**
 	 * Constructs a new {@link AdviceAdapter}.
 	 */
-	protected InvokeCountMethodVisitor(MethodVisitor methodVisitor, int access, String className, String name, String descriptor) {
+	protected InvokeCountMethodVisitor(MethodVisitor methodVisitor, InvokeCountConfig config, int access, String className, String name, String descriptor) {
 		super(Opcodes.ASM6, methodVisitor, access, name, descriptor);
+		this.config = config;
 		this.className = className;
 	}
 
@@ -27,7 +29,7 @@ class InvokeCountMethodVisitor extends AdviceAdapter {
 		Label classNameLabel = new Label();
 		mv.visitLabel(classNameLabel);
 		mv.visitLdcInsn(className);
-		mv.visitMethodInsn(INVOKESTATIC, "com/liuhc/testplugin/InvokeCountUtil", "count", "(Ljava/lang/String;)V", false);
+		mv.visitMethodInsn(INVOKESTATIC, config.invokeClass, config.invokeMethod, "(Ljava/lang/String;)V", false);
 	}
 
 	@Override

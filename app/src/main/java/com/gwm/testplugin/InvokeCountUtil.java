@@ -1,4 +1,4 @@
-package com.liuhc.testplugin;
+package com.gwm.testplugin;
 
 import android.util.Log;
 
@@ -66,8 +66,8 @@ class InvokeCountUtil {
 		private int count;
 		private final long time;
 		private long duration;
-		private String beInvokedClassName;
-		private String beInvokedMethodName;
+		private final String beInvokedClassName;
+		private final String beInvokedMethodName;
 
 		InvokeCountData(String beInvokedClassName, String beInvokedMethodName) {
 			this.count = 1;

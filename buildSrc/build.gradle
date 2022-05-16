@@ -9,8 +9,10 @@
 //apply plugin: 'maven'
 // groovy方式编写插件
 apply plugin: 'groovy'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 //上面3种方式的maven可以去掉
+//JitPack插件
+apply plugin: 'maven-publish'
 
 repositories {
     google()
@@ -36,14 +38,22 @@ def group = 'com.gwm.plugin' //组
 def version = '0.0.1' //版本
 def artifactId = 'incokeCount' //唯一标识
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //本地的Maven地址设置
-            pom.groupId = group
-            pom.artifactId = artifactId
-            pom.version = version
-            repository(url: uri('../info_plugin_repo'))
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //本地的Maven地址设置
+//            pom.groupId = group
+//            pom.artifactId = artifactId
+//            pom.version = version
+//            repository(url: uri('../info_plugin_repo'))
+//        }
+//    }
+//}
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+            }
         }
     }
 }

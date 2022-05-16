@@ -54,10 +54,6 @@ afterEvaluate {
         publications {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
-                from components.release
-                groupId = group
-                artifactId = artifact
-                version = ver
             }
         }
     }

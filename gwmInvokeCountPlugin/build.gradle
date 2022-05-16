@@ -9,7 +9,8 @@
 //apply plugin: 'maven'
 // groovy方式编写插件
 apply plugin: 'groovy'
-apply plugin: 'maven'
+//apply plugin: 'maven'
+apply plugin: 'maven-publish'
 //上面3种方式的maven可以去掉
 //JitPack插件
 //apply plugin: 'maven-publish'
@@ -40,28 +41,16 @@ java {
 //def artifact = 'incokeCount' //唯一标识
 //def ver = '0.0.1' //版本
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            //本地的Maven地址设置
-//            pom.groupId = group
-//            pom.artifactId = artifact
-//            pom.version = ver
-//            repository(url: uri('../info_plugin_repo'))
-//        }
-//    }
-//}
-//apply plugin: 'maven-publish'
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            plugin(MavenPublication) {
-//                from components.java
-////            //classpath 'com.pf.plugin:plugin:1.0.0'
-////            //下面这个指定的就是第二段的名字,如果不设置,默认就是程序名
-////            //如果不指定，默认就是工程名
-////            artifactId 'plugin'
-//            }
-//        }
-//    }
-//}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+//                from components.release
+//                groupId = group
+//                artifactId = artifact
+//                version = ver
+            }
+        }
+    }
+}

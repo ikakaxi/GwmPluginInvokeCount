@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
 //apply plugin: 'com.gwm.plugin'
 //
 //InvokeCountConfig {
@@ -51,17 +49,4 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-}
-//上传插件
-//def group = 'com.gwm.plugin' //组
-//def artifact = 'incokeCount' //唯一标识
-//def ver = '0.0.1' //版本
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-            }
-        }
-    }
 }

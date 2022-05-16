@@ -12,13 +12,12 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 //上面3种方式的maven可以去掉
 //JitPack插件
-//apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
 //apply plugin: 'com.github.dcendents:android-maven'
-//group='com.github.ikakaxi'
+group='com.github.ikakaxi'
 
 repositories {
     google()
-    jcenter()
     mavenCentral()
 }
 dependencies {
@@ -51,26 +50,21 @@ def ver = '0.0.1' //版本
 //        }
 //    }
 //}
-apply plugin: 'maven-publish'
-afterEvaluate {
-    publishing {
-        publications {
-            plugin(MavenPublication) {
-                from components.java
-//            //classpath 'com.pf.plugin:plugin:1.0.0'
-//            //下面这个指定的就是第二段的名字,如果不设置,默认就是程序名
-//            //如果不指定，默认就是工程名
-//            artifactId 'plugin'
-            }
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            //插件名称
+            artifactId = artifact
+            from components.java
+        }
+    }
+    //插件存储库
+    repositories {
+        maven {
+            // 生成的插件位置
+            url = uri('../repo')
         }
     }
 }
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            // Creates a Maven publication called "release".
-//            release(MavenPublication) {
-//            }
-//        }
-//    }
-//}

@@ -2,23 +2,32 @@
 buildscript {
     ext.kotlinVersion = '1.6.10'
     ext.gradleVersion = '4.1.1'
+    def usePluginByLocal = true
     repositories {
         google()
         mavenCentral()
         jcenter()
         maven { url 'https://jitpack.io' }
-//        maven {
-//            //指定本地maven的路径，在项目根目录下
-//            url uri('./info_plugin_repo')
-//        }
+        if (usePluginByLocal) {
+            //本地插件
+            maven {
+                //指定本地maven的路径，在项目根目录下
+                url uri('./info_plugin_repo')
+            }
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         //JitPack插件
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        //本地插件
-//        classpath 'com.gwm.plugin:invokeCount:0.0.1'
+        if (usePluginByLocal) {
+            //本地插件
+            classpath 'com.gwm.plugin:invokeCount:0.0.2'
+        } else {
+            //远程插件
+            classpath 'com.github.ikakaxi:GwmPluginInvokeCount:v0.0.22'
+        }
     }
 }
 

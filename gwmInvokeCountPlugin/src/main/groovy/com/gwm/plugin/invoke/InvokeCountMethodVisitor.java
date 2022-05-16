@@ -27,8 +27,9 @@ class InvokeCountMethodVisitor extends AdviceAdapter {
 	protected void onMethodEnter() {
 		mv.visitLdcInsn(className);
 		// 因为visitMethodInsn方法传入的格式是com/a/b/c/Demo这种格式的，所以要把com.a.b.c.Demo转换一下格式
-		String transformInvokeClass = config.invokeClass.replace(".","/");
+		String transformInvokeClass = config.invokeClass.replace(".", "/");
 		mv.visitMethodInsn(INVOKESTATIC, transformInvokeClass, config.invokeMethod, "(Ljava/lang/String;)V", false);
+		System.err.println(transformInvokeClass + "#" + config.invokeMethod + "插桩成功");
 	}
 
 	@Override

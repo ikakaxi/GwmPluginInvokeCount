@@ -38,14 +38,12 @@ java {
 
 //上传插件
 group = 'com.gwm.plugin' //组
-version = '0.0.1' //版本
-//def artifact = 'incokeCount' //唯一标识
+version = '0.0.2' //版本
 
 afterEvaluate {
     publishing {
         publications {
             maven(MavenPublication) {
-                artifactId = 'incokeCount'
                 from components.java
             }
         }

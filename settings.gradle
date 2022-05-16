@@ -1,3 +1,3 @@
 rootProject.name = "InvokeCountPlugin"
 include ':app'
-include ':gwmInvokeCountPlugin'
+//include ':gwmInvokeCountPlugin'

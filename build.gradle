@@ -2,35 +2,38 @@
 buildscript {
     ext.kotlinVersion = '1.6.10'
     ext.gradleVersion = '4.1.1'
-    def usePluginByLocal = false
+//    def usePluginByLocal = false
     repositories {
         google()
         mavenCentral()
         jcenter()
         maven { url 'https://jitpack.io' }
-        if (usePluginByLocal) {
+//        if (usePluginByLocal) {
             //本地插件
-            maven {
-                //指定本地maven的路径，在项目根目录下
-                url uri('./info_plugin_repo')
-            }
-        }
+//            maven {
+//                //指定本地maven的路径，在项目根目录下
+//                url uri('./info_plugin_repo')
+//            }
+//        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         //JitPack插件
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        if (usePluginByLocal) {
-            //本地插件
-            classpath 'com.gwm.plugin:invokeCount:0.0.2'
-        } else {
-            //远程插件
-            classpath 'com.github.ikakaxi:GwmPluginInvokeCount:v0.0.22'
-        }
+//        if (usePluginByLocal) {
+//            //本地插件
+//            classpath 'com.gwm.plugin:invokeCount:0.0.2'
+//        } else {
+//            //远程插件
+//            classpath 'com.github.ikakaxi:GwmPluginInvokeCount:v0.0.22'
+//        }
     }
 }
-
+//插件为单独项目并且使用不需要本地仓库的方式时要这么写
+plugins{
+    id("com.gwm.plugin")
+}
 allprojects {
     repositories {
         google()

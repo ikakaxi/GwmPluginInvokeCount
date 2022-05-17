@@ -6,6 +6,8 @@
 //apply plugin: 'java-library'
 //groovy方式编写插件
 apply plugin: 'groovy'
+//插件为单独项目并且使用不需要本地仓库的方式时要这么写，使用gradlePlugin需要下面的java-gradle-plugin
+apply plugin: 'java-gradle-plugin'
 
 repositories {
     google()
@@ -15,7 +17,8 @@ repositories {
 dependencies {
     // 仅在编译时使用 Gradle-API 依赖
     implementation gradleApi()
-    implementation 'com.android.tools.build:gradle:4.1.0'
+    // 查找Android的一些实现的时候需要用下面的com.android.tools.build
+    implementation 'com.android.tools.build:gradle:4.1.1'
     // kotlin方式：在插件源码中添加 kotlin 标准库依赖
 //    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
     // java方式和groovy方式
@@ -24,6 +27,17 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+gradlePlugin {
+    plugins {
+        version {
+            // 在 app 模块需要通过 id 引用这个插件
+            id = 'com.gwm.plugin'
+            // 实现这个插件的类的路径
+            implementationClass = 'com.gwm.plugin.GInfoPlugin'
+        }
+    }
 }
 
 //上传到本地

@@ -1,3 +1,4 @@
 rootProject.name = "InvokeCountPlugin"
 include ':app'
-include ':gwmInvokeCountPlugin'
+//插件为单独项目并且使用不需要本地仓库的方式时要这么写
+includeBuild("gwmInvokeCountPlugin")

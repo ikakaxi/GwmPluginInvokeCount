@@ -344,8 +344,8 @@ public class InvokeCountTransform extends Transform {
      * 真正修改类中方法字节码
      */
     private byte[] modifyClass(byte[] srcClass, String className) {
-        if (tmp) {
-            tmp = false
+        if (print) {
+            print = false
             println("------------------------------------------------------------------------------")
             println("------------------------------------------------------------------------------")
             println("------------------------------开始查找要插桩的类----------------------------------")

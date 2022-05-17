@@ -31,6 +31,10 @@ public class InvokeCountConfig {
 		}
 	}
 
+	boolean containClass(String className) {
+		return classToMethodsMap.containsKey(className);
+	}
+
 	boolean containMethod(String className, String method) {
 		if (classToMethodsMap.containsKey(className)) {
 			return classToMethodsMap.get(className).contains(method);

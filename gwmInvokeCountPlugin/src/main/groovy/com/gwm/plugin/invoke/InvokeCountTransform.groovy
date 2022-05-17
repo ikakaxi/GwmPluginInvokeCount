@@ -24,14 +24,15 @@ import java.util.jar.JarOutputStream
 public class InvokeCountTransform extends Transform {
     private WaitableExecutor waitableExecutor
     private TransformHelper transformHelper
-
     private InvokeCountConfig config
+    boolean print = true
 
     InvokeCountTransform(Project project) {
         waitableExecutor = WaitableExecutor.useGlobalSharedThreadPool()
         transformHelper = new TransformHelper()
         //添加自定义扩展
         config = project.extensions.create("InvokeCountConfig", InvokeCountConfig)
+        print = true
     }
 
     @Override
@@ -339,12 +340,21 @@ public class InvokeCountTransform extends Transform {
         pathName.replace(File.separator, ".").replace(".class", "")
     }
 //-------------------------------------------------------------------------------------------------
-
     /**
      * 真正修改类中方法字节码
      */
     private byte[] modifyClass(byte[] srcClass, String className) {
-        println("-----------------------" + className + "----------------------")
+        if (tmp) {
+            tmp = false
+            println("------------------------------------------------------------------------------")
+            println("------------------------------------------------------------------------------")
+            println("------------------------------开始查找要插桩的类----------------------------------")
+            println("------------------------------------------------------------------------------")
+            println("------------------------------------------------------------------------------")
+        }
+        if (config != null && config.containClass(className)) {
+            println("-----------------------找到了:" + className + "-----------------------")
+        }
         try {
             ClassReader cr = new ClassReader(srcClass)
             ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS)
